@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Final_App">
-        <activity android:name=".FlashcardActivity"></activity>
+        <activity android:name=".EditFlashCardsAct"></activity>
+        <activity android:name=".Edit_FC_Activity" />
+        <activity android:name=".FlashcardActivity" />
         <activity android:name=".MainActivity" />
         <activity
             android:name=".splashScreenActivity"
