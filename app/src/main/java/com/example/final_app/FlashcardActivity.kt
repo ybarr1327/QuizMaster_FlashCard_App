@@ -14,7 +14,7 @@ class FlashcardActivity : AppCompatActivity() {
         val FCBtn = findViewById<Button>(R.id.goToEditFCAct)
 
         FCBtn.setOnClickListener {
-            startActivity(Intent(this,Edit_FC_Activity::class.java))
+            startActivity(Intent(this,SelectGroupAct::class.java))
         }
         
         

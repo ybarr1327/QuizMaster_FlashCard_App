@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Final_App">
-        <activity android:name=".EditFlashCardsAct"></activity>
-        <activity android:name=".Edit_FC_Activity" />
+        <activity android:name=".EditAddGroupAct"></activity>
+        <activity android:name=".EditFlashCardsAct" />
+        <activity android:name=".SelectGroupAct" />
         <activity android:name=".FlashcardActivity" />
         <activity android:name=".MainActivity" />
         <activity
