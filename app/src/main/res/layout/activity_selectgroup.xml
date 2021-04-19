@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:text="Select a Group"
-        app:layout_constraintBottom_toTopOf="@+id/spinner"
+        app:layout_constraintBottom_toTopOf="@+id/GroupSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -24,10 +24,10 @@
         android:text="continue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
+        app:layout_constraintTop_toBottomOf="@+id/SubGroupSpinner" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/GroupSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="174dp"
@@ -41,12 +41,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="29dp"
         android:text="Select a sub group"
-        app:layout_constraintBottom_toTopOf="@+id/spinner2"
+        app:layout_constraintBottom_toTopOf="@+id/SubGroupSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/SubGroupSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="310dp"
