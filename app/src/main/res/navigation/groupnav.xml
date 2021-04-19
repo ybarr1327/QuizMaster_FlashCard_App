@@ -22,20 +22,7 @@
         <action
             android:id="@+id/action_addGroupFragment_to_listGroupFragment"
             app:destination="@id/listGroupFragment" />
-        <action
-            android:id="@+id/action_addGroupFragment_to_updateGroupFragment"
-            app:destination="@id/updateGroupFragment" />
+
     </fragment>
-    <fragment
-        android:id="@+id/updateGroupFragment"
-        android:name="com.example.final_app.fragmentsGroup.updateGroup.UpdateGroupFragment"
-        android:label="Update Group"
-        tools:layout="@layout/fragment_update_group" >
-        <action
-            android:id="@+id/action_updateGroupFragment_to_addGroupFragment2"
-            app:destination="@id/addGroupFragment" />
-        <argument
-            android:name="updateGroup"
-            app:argType="com.example.final_app.dataGroup.Group" />
-    </fragment>
+
 </navigation>

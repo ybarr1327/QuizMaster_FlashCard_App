@@ -15,5 +15,8 @@ interface GroupDao {
     @Query("SELECT * FROM group_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<Group>>
 
+    @Query("DELETE FROM group_table")
+    suspend fun deleteAllGroups()
+
 
 }

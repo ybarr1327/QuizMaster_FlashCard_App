@@ -1,9 +1,9 @@
 package com.example.final_app.fragmentsGroup.listGroup
 
+import android.app.AlertDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -41,8 +41,36 @@ class listGroupFragment : Fragment() {
         view.floatingActionButtonGroups.setOnClickListener {
             findNavController().navigate(R.id.action_listGroupFragment_to_addGroupFragment)
         }
+
+        setHasOptionsMenu(true)
+
+
         return view
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.delete_menu_group, menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.menu_delete_group){
+            deleteAllUsers()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteAllUsers() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Yes") { _, _ ->
+            mGroupViewModel.deleteAllGroups()
+            Toast.makeText(requireContext(),"Sucessfully removed everything",Toast.LENGTH_LONG).show()
+        }
+        builder.setNegativeButton("No") { _, _ ->
+
+        }
+        builder.setTitle("Delete Everything?")
+        builder.setMessage("Are you sure you want to delete everything?")
+        builder.create().show()
+
+    }
 }
