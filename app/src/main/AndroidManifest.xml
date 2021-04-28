@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Final_App">
-        <activity android:name=".EditAddRemoveGroups"></activity>
         <activity android:name=".EditFlashCardsAct" />
         <activity android:name=".SelectGroupAct" />
         <activity android:name=".FlashcardActivity" />

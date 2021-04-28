@@ -13,7 +13,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.final_app.dataGroup.Group
 import com.example.final_app.dataGroup.GroupViewModel
-import kotlinx.android.synthetic.main.fragment_add_group.*
 
 class SelectGroupAct : AppCompatActivity() {
     private lateinit var mGroupViewModel: GroupViewModel
@@ -29,15 +28,16 @@ class SelectGroupAct : AppCompatActivity() {
         val editGroupBtn = findViewById<Button>(R.id.GoToEdit_AddBtn)
 
         val addGroupBtn: View = findViewById(R.id.add_group_button)
+        val delGroupBtn: View = findViewById(R.id.delete_group_button)
 
         val group_spinner = findViewById<Spinner>(R.id.GroupSpinner)
 
-        var group_adapter = ArrayAdapter<Any>(this,android.R.layout.simple_spinner_item)
+        var group_adapter = ArrayAdapter<Group>(this,android.R.layout.simple_spinner_item)
 
         mGroupViewModel.readAllData.observe(this, Observer {  group ->
             group_adapter.clear()
             group?.forEach {
-                group_adapter.add(it.groupName)
+                group_adapter.add(it)
             }
         })
 
@@ -71,15 +71,28 @@ class SelectGroupAct : AppCompatActivity() {
             builder.create().show()
         }
 
+        delGroupBtn.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+
+            val itemSelected:Group = group_spinner.selectedItem as Group
+            builder.setPositiveButton("Yes") { _, _ ->
+
+                mGroupViewModel.deleteGroup(itemSelected)
+                Toast.makeText(this,"Successfully removed ${itemSelected.groupName}",Toast.LENGTH_LONG).show()
+            }
+            builder.setNegativeButton("Cancel",DialogInterface.OnClickListener { dialog, which ->  dialog.cancel()})
+            builder.setTitle("Delete ${itemSelected.groupName}?")
+            builder.setMessage("Are you sure you want to delete ${itemSelected.groupName}?")
+            builder.create().show()
+        }
+
 
 
         editConfBtn.setOnClickListener {
             startActivity(Intent(this, EditFlashCardsAct::class.java))
         }
 
-        editGroupBtn.setOnClickListener {
-            startActivity(Intent(this,EditAddRemoveGroups::class.java))
-        }
+
 
     }
 

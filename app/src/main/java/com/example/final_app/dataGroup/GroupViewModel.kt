@@ -29,4 +29,10 @@ class GroupViewModel(application: Application):AndroidViewModel(application) {
             repository.deleteAllGroups()
         }
     }
+
+    fun deleteGroup(group: Group){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteGroup(group)
+        }
+    }
 }
