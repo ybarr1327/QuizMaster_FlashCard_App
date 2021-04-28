@@ -25,19 +25,18 @@ class SelectGroupAct : AppCompatActivity() {
         mGroupViewModel = ViewModelProvider(this).get(GroupViewModel::class.java)
 
         val editConfBtn = findViewById<Button>(R.id.EditConfirmBtn)
-        val editGroupBtn = findViewById<Button>(R.id.GoToEdit_AddBtn)
 
         val addGroupBtn: View = findViewById(R.id.add_group_button)
         val delGroupBtn: View = findViewById(R.id.delete_group_button)
 
         val group_spinner = findViewById<Spinner>(R.id.GroupSpinner)
 
-        var group_adapter = ArrayAdapter<Group>(this,android.R.layout.simple_spinner_item)
+        var group_adapter = ArrayAdapter<Any>(this,android.R.layout.simple_spinner_item)
 
         mGroupViewModel.readAllData.observe(this, Observer {  group ->
             group_adapter.clear()
             group?.forEach {
-                group_adapter.add(it)
+                group_adapter.add(it.groupName)
             }
         })
 
@@ -53,7 +52,6 @@ class SelectGroupAct : AppCompatActivity() {
 
             val input = EditText(this)
             input.setHint("Name")
-
             input.inputType = InputType.TYPE_CLASS_TEXT
             builder.setView(input)
 
@@ -72,18 +70,27 @@ class SelectGroupAct : AppCompatActivity() {
         }
 
         delGroupBtn.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
+            if(group_spinner.count != 0) {
+                val itemSelected: String = group_spinner.selectedItem as String
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Delete ${itemSelected}?")
+                builder.setMessage("Are you sure you want to delete ${itemSelected}?")
 
-            val itemSelected:Group = group_spinner.selectedItem as Group
-            builder.setPositiveButton("Yes") { _, _ ->
 
-                mGroupViewModel.deleteGroup(itemSelected)
-                Toast.makeText(this,"Successfully removed ${itemSelected.groupName}",Toast.LENGTH_LONG).show()
+                builder.setPositiveButton("Yes") { _, _ ->
+
+                    mGroupViewModel.deleteGroup(itemSelected)
+                    Toast.makeText(
+                        this,
+                        "Successfully removed ${itemSelected}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                builder.setNegativeButton(
+                    "Cancel",
+                    DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+                builder.create().show()
             }
-            builder.setNegativeButton("Cancel",DialogInterface.OnClickListener { dialog, which ->  dialog.cancel()})
-            builder.setTitle("Delete ${itemSelected.groupName}?")
-            builder.setMessage("Are you sure you want to delete ${itemSelected.groupName}?")
-            builder.create().show()
         }
 
 
@@ -97,8 +104,6 @@ class SelectGroupAct : AppCompatActivity() {
     }
 
     private fun insertDataToDatabase(groupName: String) {
-
-
         if (inputCheck(groupName)){
             //create user object
             val group = Group(0,groupName)

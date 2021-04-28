@@ -18,6 +18,8 @@ class GroupViewModel(application: Application):AndroidViewModel(application) {
         readAllData = repository.readAllData
     }
 
+
+
     fun addGroup(group: Group){
         viewModelScope.launch(Dispatchers.IO) {
             repository.addGroup(group)
@@ -30,9 +32,9 @@ class GroupViewModel(application: Application):AndroidViewModel(application) {
         }
     }
 
-    fun deleteGroup(group: Group){
+    fun deleteGroup(name: String){
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteGroup(group)
+            repository.deleteGroup(name)
         }
     }
 }

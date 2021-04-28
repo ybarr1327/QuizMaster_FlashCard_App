@@ -6,7 +6,7 @@ import androidx.room.*
 
 @Dao
 interface GroupDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addGroup(group:Group)
 
     @Query("SELECT * FROM group_table ORDER BY id ASC")
@@ -15,7 +15,7 @@ interface GroupDao {
     @Query("DELETE FROM group_table")
     suspend fun deleteAllGroups()
 
-    @Delete
-    suspend fun deleteGroup(group: Group)
+    @Query("DELETE FROM group_table where groupName=:name")
+    suspend fun deleteGroup(name: String)
 
 }
