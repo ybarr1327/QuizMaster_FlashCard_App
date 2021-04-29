@@ -28,6 +28,7 @@ class SelectGroupAct : AppCompatActivity() {
 
         val addGroupBtn: View = findViewById(R.id.add_group_button)
         val delGroupBtn: View = findViewById(R.id.delete_group_button)
+        val editGroupBtn: View = findViewById(R.id.edit_group_button)
 
         val group_spinner = findViewById<Spinner>(R.id.GroupSpinner)
 
@@ -89,9 +90,46 @@ class SelectGroupAct : AppCompatActivity() {
                 builder.setNegativeButton(
                     "Cancel",
                     DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+
+                builder.setCancelable(false)
                 builder.create().show()
             }
         }
+
+        editGroupBtn.setOnClickListener {
+            if(group_spinner.count != 0) {
+                val itemSelectedName: String = group_spinner.selectedItem as String
+
+
+
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Edit ${itemSelectedName}?")
+                builder.setMessage("Change the Group Name of ${itemSelectedName}:")
+
+                val input = EditText(this)
+                input.setHint("Name")
+                input.inputType = InputType.TYPE_CLASS_TEXT
+                builder.setView(input)
+
+                builder.setPositiveButton("Yes") { _, _ ->
+                    val NewGroupName = input.text.toString()
+                    if (inputCheck(NewGroupName)){
+                        mGroupViewModel.updateGroup(itemSelectedName,NewGroupName)
+                        Toast.makeText(this,"Successfully changed to ${NewGroupName}", Toast.LENGTH_LONG).show()
+                    }
+                    else{
+                        Toast.makeText(this,"Add Failed, Please fill out name fields",Toast.LENGTH_LONG).show()
+                    }
+                }
+                builder.setNegativeButton(
+                    "Cancel",
+                    DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+
+                builder.setCancelable(false)
+                builder.create().show()
+            }
+        }
+
 
 
 
@@ -112,7 +150,7 @@ class SelectGroupAct : AppCompatActivity() {
             Toast.makeText(this,"Successfully added ${groupName}", Toast.LENGTH_LONG).show()
         }
         else{
-            Toast.makeText(this,"Please fill out name fields",Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"Edit Failed, Please fill out name fields",Toast.LENGTH_LONG).show()
         }
 
     }

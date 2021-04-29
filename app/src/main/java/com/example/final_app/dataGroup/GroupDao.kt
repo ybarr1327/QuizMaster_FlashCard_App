@@ -18,4 +18,7 @@ interface GroupDao {
     @Query("DELETE FROM group_table where groupName=:name")
     suspend fun deleteGroup(name: String)
 
+    @Query("update group_table set groupName=:newName where groupName=:oldName")
+    suspend fun updateGroup(oldName: String, newName:String)
+
 }
