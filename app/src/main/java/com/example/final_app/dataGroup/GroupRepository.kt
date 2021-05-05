@@ -1,17 +1,18 @@
 package com.example.final_app.dataGroup
 
-import android.security.keystore.StrongBoxUnavailableException
+
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 
 class GroupRepository(private val groupDao: GroupDao) {
-    val readAllData: LiveData<List<Group>> = groupDao.readAllData()
+    val readAllGroups: LiveData<List<Group>> = groupDao.readAllGroups()
+
+    suspend fun getSubGroupsOfGroup(gName:String): List<SubGroup> {
+        return groupDao.getSubGroupsOfGroup(gName)
+    }
 
     suspend fun addGroup(group:Group){
         groupDao.addGroup(group)
-    }
-
-    suspend fun deleteAllGroups(){
-        groupDao.deleteAllGroups()
     }
 
     suspend fun deleteGroup(name: String){
@@ -20,6 +21,18 @@ class GroupRepository(private val groupDao: GroupDao) {
 
     suspend fun updateGroup(oldName:String, newName:String){
         groupDao.updateGroup(oldName,newName)
+    }
+
+    suspend fun addSubGroup(subGroup: SubGroup){
+        groupDao.addSubGroup(subGroup)
+    }
+
+    suspend fun deleteSubGroup(name: String){
+        groupDao.deleteSubGroup(name)
+    }
+
+    suspend fun updateSubGroup(oldName:String, newName:String){
+        groupDao.updateSubGroup(oldName,newName)
     }
 
 

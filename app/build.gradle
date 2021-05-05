@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
 
     id 'kotlin-kapt'
 }
@@ -9,6 +9,8 @@ plugins {
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
+
+
 
     defaultConfig {
         applicationId "com.example.final_app"
@@ -33,6 +35,10 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 }
 

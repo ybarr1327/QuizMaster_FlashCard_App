@@ -1,21 +1,37 @@
 package com.example.final_app.dataGroup
 
-import android.os.Parcelable
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.Index
-import androidx.room.PrimaryKey
-import kotlinx.android.parcel.Parcelize
-import java.lang.reflect.Constructor
 
+import android.os.Parcelable
+import androidx.room.*
+import kotlinx.parcelize.Parcelize
+
+
+//indices = arrayOf(Index(value = ["groupName"], unique = true))
 
 @Parcelize
-@Entity(tableName = "group_table", indices = arrayOf(Index(value = ["groupName"], unique = true)))
+@Entity(tableName = "group_table")
 data class Group(
-    @PrimaryKey(autoGenerate = true) // room database automatically generates the id
-    @ColumnInfo(name = "id")
-    val id:Int,
+    @PrimaryKey
     @ColumnInfo(name = "groupName")
-    val groupName:String,
+    val groupName: String,
+    ) : Parcelable
 
-):Parcelable
+@Entity(
+    tableName = "sub_group_table",
+    foreignKeys = [
+        ForeignKey(
+            entity = Group::class,
+            parentColumns = ["groupName"],
+            childColumns = ["sgParentGroupName"],
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.CASCADE
+        )]
+)
+data class SubGroup(
+    @PrimaryKey
+    @ColumnInfo(name = "subGroupName")
+    val subGroupName: String,
+    @ColumnInfo(name = "sgParentGroupName")
+    val sgParentGroupName: String,
+
+)
