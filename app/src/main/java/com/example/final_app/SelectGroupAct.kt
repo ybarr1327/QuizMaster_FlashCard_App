@@ -59,6 +59,16 @@ class SelectGroupAct : AppCompatActivity() {
         sub_group_spinner.adapter = sub_group_adapter
 
 
+        group_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                mGroupViewModel.getSubGroupsOfGroup(parent.getItemAtPosition(position).toString())
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // write code to perform some action
+            }
+        }
+
         addGroupBtn.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Add a new group?")
@@ -79,6 +89,11 @@ class SelectGroupAct : AppCompatActivity() {
                     mGroupViewModel.addGroup(group)
                     Toast.makeText(this, "Successfully added $NewGroupName", Toast.LENGTH_LONG)
                         .show()
+
+                    if (group_spinner.count != 0) {
+                        val newItemSelected: String = group_spinner.selectedItem as String
+                        mGroupViewModel.getSubGroupsOfGroup(newItemSelected)
+                    }
                 } else {
                     Toast.makeText(
                         this,
@@ -114,6 +129,10 @@ class SelectGroupAct : AppCompatActivity() {
                         "Successfully removed $itemSelected",
                         Toast.LENGTH_LONG
                     ).show()
+                    if (group_spinner.count != 0) {
+                        val newItemSelected: String = group_spinner.selectedItem as String
+                        mGroupViewModel.getSubGroupsOfGroup(newItemSelected)
+                    }
                 }
                 builder.setNegativeButton(
                     "Cancel"
@@ -189,6 +208,7 @@ class SelectGroupAct : AppCompatActivity() {
                             "Successfully added $NewGroupName",
                             Toast.LENGTH_LONG
                         ).show()
+                        mGroupViewModel.getSubGroupsOfGroup(groupSelected)
                     } else {
                         Toast.makeText(
                             this,
@@ -205,7 +225,7 @@ class SelectGroupAct : AppCompatActivity() {
 
                 builder.setCancelable(false)
                 builder.create().show()
-                mGroupViewModel.getSubGroupsOfGroup(groupSelected)
+
             }
         }
 
@@ -224,6 +244,8 @@ class SelectGroupAct : AppCompatActivity() {
                         "Successfully removed $subGroupSelected",
                         Toast.LENGTH_LONG
                     ).show()
+                    val groupSelected: String = group_spinner.selectedItem as String
+                    mGroupViewModel.getSubGroupsOfGroup(groupSelected)
                 }
                 builder.setNegativeButton(
                     "Cancel"
@@ -257,6 +279,8 @@ class SelectGroupAct : AppCompatActivity() {
                             "Successfully changed to $NewGroupName",
                             Toast.LENGTH_LONG
                         ).show()
+                        val groupSelected: String = group_spinner.selectedItem as String
+                        mGroupViewModel.getSubGroupsOfGroup(groupSelected)
                     } else {
                         Toast.makeText(
                             this,
