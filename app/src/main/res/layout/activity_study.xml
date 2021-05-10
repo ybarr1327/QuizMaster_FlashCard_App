@@ -2,24 +2,27 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#A3068CF6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".study">
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="338dp"
+        android:layout_height="99dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="question goes here"
+        android:hint="question goes here "
         android:inputType="textMultiLine"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396" />
+        app:layout_constraintVertical_bias="0.206"
+        android:text="hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh" />
 
     <EditText
         android:id="@+id/editTextNumber"
@@ -29,17 +32,29 @@
         android:gravity="center"
         android:hint="1"
         android:inputType="number"
-        tools:layout_editor_absoluteX="159dp"
-        tools:layout_editor_absoluteY="28dp" />
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/Card"
         android:layout_width="76dp"
         android:layout_height="38dp"
         android:gravity="center"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="83dp"
-        tools:layout_editor_absoluteY="28dp"
+        android:text="CARD#"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.173"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048"
+        tools:ignore="MissingConstraints"
         tools:text="CARD #" />
 
     <TextView
@@ -47,10 +62,79 @@
         android:layout_width="47dp"
         android:layout_height="38dp"
         android:gravity="center"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="213dp"
-        tools:layout_editor_absoluteY="28dp"
-        tools:text="Of" />
+        android:text="OF"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048"
+        tools:ignore="MissingConstraints"
+        />
+
+    <TextView
+        android:id="@+id/scoreOf"
+        android:layout_width="47dp"
+        android:layout_height="38dp"
+        android:gravity="center"
+        android:text="OF"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.951"
+        tools:ignore="MissingConstraints"
+         />
+
+    <TextView
+        android:id="@+id/Score"
+        android:layout_width="61dp"
+        android:layout_height="34dp"
+        android:gravity="center"
+        android:text="SCORE:"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.191"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.947" />
+
+    <EditText
+        android:id="@+id/editTextNumber4"
+        android:layout_width="73dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="50"
+        android:inputType="number"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.677"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.953"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/ScoreTextNumber1"
+        android:layout_width="54dp"
+        android:layout_height="38dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="1"
+        android:inputType="number"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.358"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextNumber2"
@@ -60,31 +144,49 @@
         android:gravity="center"
         android:hint="50"
         android:inputType="number"
-        tools:layout_editor_absoluteX="260dp"
-        tools:layout_editor_absoluteY="28dp" />
-
-    <Button
-        android:id="@+id/correct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CORRECT"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.776"
+        app:layout_constraintHorizontal_bias="0.695"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.754" />
+        app:layout_constraintVertical_bias="0.046"
+        tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/incorrect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="INCORRECT"
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="340dp"
+        android:layout_height="128dp"
+        android:text="answer goes here"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.756" />
+        app:layout_constraintVertical_bias="0.45" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.835"
+        app:srcCompat="@drawable/check" />
+
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.833"
+        app:srcCompat="@drawable/x" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
