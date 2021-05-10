@@ -31,4 +31,19 @@ interface GroupDao {
 
     @Query("update sub_group_table set subGroupName=:newName where subGroupName=:oldName")
     suspend fun updateSubGroup(oldName: String, newName:String)
+
+    //--------------------------------------------------------------
+
+    @Query("select * from flashcard_table where FCParentSubGroup = :parent")
+    suspend fun getFlashcards(parent: String):List<FlashCard>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun addFlashcard(flashCard: FlashCard)
+
+    @Query("update flashcard_table set FC_Front = :newFront, FC_back = :newBack where FC_Front = :curFront")
+    suspend fun editFlashcard(curFront:String, newFront:String, newBack:String)
+
+    @Query("delete from flashcard_table where FC_Front = :front")
+    suspend fun deleteFlashcard(front:String)
+
 }

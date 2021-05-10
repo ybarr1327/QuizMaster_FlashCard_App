@@ -35,3 +35,24 @@ data class SubGroup(
     val sgParentGroupName: String,
 
 )
+
+@Entity(
+    tableName = "flashcard_table",
+    foreignKeys = [
+        ForeignKey(
+            entity = SubGroup::class,
+            parentColumns = ["subGroupName"],
+            childColumns = ["FCParentSubGroup"],
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.CASCADE
+        )]
+)
+data class FlashCard(
+    @PrimaryKey
+    @ColumnInfo(name = "FC_Front")
+    var front: String,
+    @ColumnInfo(name = "FC_back")
+    var back: String,
+    @ColumnInfo(name = "FCParentSubGroup")
+    var FCParentSubGroup: String
+)

@@ -300,7 +300,18 @@ class SelectGroupAct : AppCompatActivity() {
 
 
         editConfBtn.setOnClickListener {
-            startActivity(Intent(this, EditFlashCardsAct::class.java))
+            if(group_spinner.selectedItem != null && group_spinner.count != 0 &&
+                sub_group_spinner.selectedItem != null && sub_group_spinner.count != 0)
+            {
+                val groupName = group_spinner.selectedItem.toString()
+                val subGroupName = sub_group_spinner.selectedItem.toString()
+                val intent = Intent(this, EditFlashCardsAct::class.java)
+                intent.putExtra("group_name", groupName)
+                intent.putExtra("sub_group_name", subGroupName)
+                startActivity(intent)
+            }
+
+
         }
     }
 
