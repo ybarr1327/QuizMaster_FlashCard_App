@@ -11,11 +11,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val gotoFCActBtn = findViewById<Button>(R.id.GoToFCActBtn)
+        val FCBtn = findViewById<Button>(R.id.goToEditFCAct)
+        val StudyFlashbtn = findViewById<Button>(R.id.goToStudyFCAct)
 
+        FCBtn.setOnClickListener {
+            startActivity(Intent(this,SelectGroupAct::class.java))
+        }
 
-        gotoFCActBtn.setOnClickListener {
-            startActivity(Intent(this, FlashcardActivity::class.java))
+        StudyFlashbtn.setOnClickListener {
+            startActivity(Intent(this, study_flashcards::class.java))
         }
 
 

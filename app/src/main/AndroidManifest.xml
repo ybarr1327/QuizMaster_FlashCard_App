@@ -9,10 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Final_App">
-        <activity android:name=".EditFlashCardsAct" />
-        <activity android:name=".SelectGroupAct" />
-        <activity android:name=".FlashcardActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".study"
+                  android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name=".study_flashcards"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".EditFlashCardsAct"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".SelectGroupAct"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".splashScreenActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
