@@ -26,8 +26,10 @@ class study : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_study)
 
+        //get the viewmodel
         mGroupViewModel = ViewModelProvider(this).get(GroupViewModel::class.java)
 
+        //get the intent which should hold the group and subgroup names
         val intent = intent.extras
         var groupName:String = ""
         var subGroupName:String = ""
@@ -78,26 +80,26 @@ class study : AppCompatActivity() {
 
         var currentScore:Int = 0
 
-        mGroupViewModel.getFlashcards(subGroupName)
+        mGroupViewModel.getFlashcards(subGroupName) // this gets the flashcards of the subgroup passed from the intent
 
         mGroupViewModel.returnedFlashCards.observe(this, { Flashcard ->
-            if (Flashcard.isNotEmpty()) {
-                shuffle(Flashcard)
+            if (Flashcard.isNotEmpty()) { // if there are items in the flashcard set
+                shuffle(Flashcard) // randomize the cards
 
-
+                //set the front and the back of the flashcards
                 flashcardFront.text = Flashcard[0].front
                 flashcardBack.text = Flashcard[0].back
 
-                totalNumOfCards = Flashcard.size
-                totalCardNum.setText(totalNumOfCards.toString())
+                totalNumOfCards = Flashcard.size //set the size of the flashcards
+                totalCardNum.setText(totalNumOfCards.toString()) //store the size in the textview
 
-                currentFlashcard = 0
-                currentCardNumber.setText((currentFlashcard + 1).toString())
+                currentFlashcard = 0 // this is the index for the flashcard in the list
+                currentCardNumber.setText((currentFlashcard + 1).toString()) // this is the number of the flashcard in the set
 
-                currentScoreNum.setText(currentScore.toString())
-                totalScoreNum.setText(totalNumOfCards.toString())
+                currentScoreNum.setText(currentScore.toString()) // set the initial score
+                totalScoreNum.setText(totalNumOfCards.toString()) // set the total possible score
 
-                Flashcard?.forEach {
+                Flashcard?.forEach { // store the flashcards in the front and the back arrays
                     Front += (it.front)
                     Back += (it.back)
                 }
@@ -181,14 +183,14 @@ class study : AppCompatActivity() {
             }
         }
 
-        restartButton.setOnClickListener {
+        restartButton.setOnClickListener { // this restarts the activity when they finish studying and want to go again
             val intent = getIntent()
             finish()
-            startActivity(intent)
+            startActivity(intent) // by restarting the app, the randomize gets called again
         }
 
         val Backbtn = findViewById<Button>(R.id.Backbutton)
-
+        //the back button stops this activity and goes to the home page
         Backbtn.setOnClickListener {
             finish()
             startActivity(Intent(this, MainActivity::class.java))

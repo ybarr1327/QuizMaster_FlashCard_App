@@ -9,11 +9,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class GroupViewModel(application: Application):AndroidViewModel(application) {
-    val readAllGroups: LiveData<List<Group>>
-    val returnedSubGroups = MutableLiveData<List<SubGroup>>()
-    val returnedFlashCards = MutableLiveData<List<FlashCard>>()
+    val readAllGroups: LiveData<List<Group>> // this stores the live data for the groups
+    val returnedSubGroups = MutableLiveData<List<SubGroup>>() // this is the live data for the subgroups
+    val returnedFlashCards = MutableLiveData<List<FlashCard>>() //this is the live data for the returned flashcards
 
-    private val repository:GroupRepository
+    private val repository:GroupRepository // creates an instance of the Repository
     init {
         val groupDao = GroupDatabase.getDatabase(application).groupDao()
         repository = GroupRepository(groupDao)
@@ -21,7 +21,7 @@ class GroupViewModel(application: Application):AndroidViewModel(application) {
     }
 
 
-    //data access functions
+    //data access functions, these basically update the live data when called
     fun getSubGroupsOfGroup(gName:String){
         viewModelScope.launch {
             returnedSubGroups.postValue(repository.getSubGroupsOfGroup(gName))

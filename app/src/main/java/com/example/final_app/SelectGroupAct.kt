@@ -24,6 +24,7 @@ class SelectGroupAct : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_selectgroup)
 
+        //this gets the viewmodel of the database to access it
         mGroupViewModel = ViewModelProvider(this).get(GroupViewModel::class.java)
 
         val editConfBtn = findViewById<Button>(R.id.EditConfirmBtn)
@@ -42,14 +43,16 @@ class SelectGroupAct : AppCompatActivity() {
         val sub_group_spinner = findViewById<Spinner>(R.id.SubGroupSpinner)
         var sub_group_adapter = ArrayAdapter<Any>(this, android.R.layout.simple_spinner_item)
 
+        //update the adapter with the groups of the database
         mGroupViewModel.readAllGroups.observe(this, Observer { group ->
-            group_adapter.clear()
-            group?.forEach {
+            group_adapter.clear() // clear all
+            group?.forEach { // re add the items by iteration
                 group_adapter.add(it.groupName)
             }
         })
         group_spinner.adapter = group_adapter
 
+        //update the adapter with the subgroups of the database
         mGroupViewModel.returnedSubGroups.observe(this, Observer { subgroup ->
             sub_group_adapter.clear()
             subgroup?.forEach {
@@ -58,7 +61,7 @@ class SelectGroupAct : AppCompatActivity() {
         })
         sub_group_spinner.adapter = sub_group_adapter
 
-
+        //if an item in the group spinner is selected, then the subgroup's data needs to be updated
         group_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 mGroupViewModel.getSubGroupsOfGroup(parent.getItemAtPosition(position).toString())
@@ -70,10 +73,12 @@ class SelectGroupAct : AppCompatActivity() {
         }
 
         addGroupBtn.setOnClickListener {
+            //build the dialog
             val builder = AlertDialog.Builder(this)
             builder.setTitle("Add a new group?")
             builder.setMessage("Enter The Group Name: ")
 
+            //declare the input and make it part of the dialog
             val input = EditText(this)
             input.hint = "Name"
             input.inputType = InputType.TYPE_CLASS_TEXT
@@ -81,20 +86,20 @@ class SelectGroupAct : AppCompatActivity() {
 
 
             builder.setPositiveButton("Add") { _, _ ->
-                val NewGroupName = input.text.toString()
+                val NewGroupName = input.text.toString() // get the input text
                 if (inputCheck(NewGroupName)) {
                     //create user object
-                    val group = Group(NewGroupName)
+                    val group = Group(NewGroupName) //create the group with the input's text
                     //add data to database
                     mGroupViewModel.addGroup(group)
                     Toast.makeText(this, "Successfully added $NewGroupName", Toast.LENGTH_LONG)
                         .show()
 
-                    if (group_spinner.count != 0) {
+                    if (group_spinner.count != 0) { //after adding the group, update the subgroups spinner with the new data
                         val newItemSelected: String = group_spinner.selectedItem as String
                         mGroupViewModel.getSubGroupsOfGroup(newItemSelected)
                     }
-                } else {
+                } else { // if the input is not correct show an error message
                     Toast.makeText(
                         this,
                         "Edit Failed, Please fill out name fields",
@@ -114,22 +119,22 @@ class SelectGroupAct : AppCompatActivity() {
         }
 
         delGroupBtn.setOnClickListener {
-            if (group_spinner.count != 0) {
+            if (group_spinner.count != 0) { //if a group is selected
                 val itemSelected: String = group_spinner.selectedItem as String
-                val builder = AlertDialog.Builder(this)
+                val builder = AlertDialog.Builder(this) // bulild the dialog
                 builder.setTitle("Delete $itemSelected?")
                 builder.setMessage("Are you sure you want to delete $itemSelected?")
 
 
                 builder.setPositiveButton("Yes") { _, _ ->
 
-                    mGroupViewModel.deleteGroup(itemSelected)
+                    mGroupViewModel.deleteGroup(itemSelected) // delete the selected item from the spinner
                     Toast.makeText(
                         this,
                         "Successfully removed $itemSelected",
                         Toast.LENGTH_LONG
                     ).show()
-                    if (group_spinner.count != 0) {
+                    if (group_spinner.count != 0) { // update the subgroup spinner
                         val newItemSelected: String = group_spinner.selectedItem as String
                         mGroupViewModel.getSubGroupsOfGroup(newItemSelected)
                     }
@@ -144,14 +149,15 @@ class SelectGroupAct : AppCompatActivity() {
         }
 
         editGroupBtn.setOnClickListener {
-            if (group_spinner.count != 0) {
+            if (group_spinner.count != 0) { // if a group is selected
                 val itemSelectedName: String = group_spinner.selectedItem as String
 
-
+                //create the builder
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Edit ${itemSelectedName}?")
                 builder.setMessage("Change the Group Name of ${itemSelectedName}:")
 
+                //create the input
                 val input = EditText(this)
                 input.hint = "Name"
                 input.inputType = InputType.TYPE_CLASS_TEXT
@@ -159,7 +165,7 @@ class SelectGroupAct : AppCompatActivity() {
 
                 builder.setPositiveButton("Yes") { _, _ ->
                     val NewGroupName = input.text.toString()
-                    if (inputCheck(NewGroupName)) {
+                    if (inputCheck(NewGroupName)) { //edit the group selected by changing the name to the new text input
                         mGroupViewModel.updateGroup(itemSelectedName, NewGroupName)
                         Toast.makeText(
                             this,
@@ -184,12 +190,13 @@ class SelectGroupAct : AppCompatActivity() {
         }
 
         addSubGroupBtn.setOnClickListener {
-            if (group_spinner.count != 0) {
-                val groupSelected: String = group_spinner.selectedItem as String
-                val builder = AlertDialog.Builder(this)
+            if (group_spinner.count != 0) { // if a group is selected
+                val groupSelected: String = group_spinner.selectedItem as String // get the group selected
+                val builder = AlertDialog.Builder(this) //build the dialog
                 builder.setTitle("Add a new Sub Group?")
                 builder.setMessage("Enter The Sub Group Name: ")
 
+                //declare the input
                 val input = EditText(this)
                 input.hint = "Name"
                 input.inputType = InputType.TYPE_CLASS_TEXT
@@ -197,10 +204,10 @@ class SelectGroupAct : AppCompatActivity() {
 
 
                 builder.setPositiveButton("Add") { _, _ ->
-                    val NewGroupName = input.text.toString()
+                    val NewGroupName = input.text.toString() // get the new subgroup name
                     if (inputCheck(NewGroupName)) {
                         //create user object
-                        val subGroup = SubGroup(NewGroupName, groupSelected)
+                        val subGroup = SubGroup(NewGroupName, groupSelected) // create a new subgroup of the group
                         //add data to database
                         mGroupViewModel.addSubGroup(subGroup)
                         Toast.makeText(
@@ -208,7 +215,7 @@ class SelectGroupAct : AppCompatActivity() {
                             "Successfully added $NewGroupName",
                             Toast.LENGTH_LONG
                         ).show()
-                        mGroupViewModel.getSubGroupsOfGroup(groupSelected)
+                        mGroupViewModel.getSubGroupsOfGroup(groupSelected) // update the subgroup spinner
                     } else {
                         Toast.makeText(
                             this,
@@ -230,21 +237,21 @@ class SelectGroupAct : AppCompatActivity() {
         }
 
         delSubGroupBtn.setOnClickListener {
-            if (group_spinner.count != 0 && sub_group_spinner.count != 0) {
-                val subGroupSelected: String = sub_group_spinner.selectedItem as String
+            if (group_spinner.count != 0 && sub_group_spinner.count != 0) { // if the group and subgroup are selected
+                val subGroupSelected: String = sub_group_spinner.selectedItem as String // get the subgroup
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Delete $subGroupSelected?")
                 builder.setMessage("Are you sure you want to delete $subGroupSelected?")
 
 
                 builder.setPositiveButton("Yes") { _, _ ->
-                    mGroupViewModel.deleteSubGroup(subGroupSelected)
+                    mGroupViewModel.deleteSubGroup(subGroupSelected) // delete the subgroup
                     Toast.makeText(
                         this,
                         "Successfully removed $subGroupSelected",
                         Toast.LENGTH_LONG
                     ).show()
-                    val groupSelected: String = group_spinner.selectedItem as String
+                    val groupSelected: String = group_spinner.selectedItem as String//update the subgroup spinner
                     mGroupViewModel.getSubGroupsOfGroup(groupSelected)
                 }
                 builder.setNegativeButton(
@@ -257,23 +264,24 @@ class SelectGroupAct : AppCompatActivity() {
         }
 
         editSubGroupBtn.setOnClickListener {
-            if (sub_group_spinner.count != 0) {
+            if (sub_group_spinner.count != 0) { //if a subgroup is selected
                 val subGroupSelected: String = sub_group_spinner.selectedItem as String
 
-
+                //build the dialog
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Edit ${subGroupSelected}?")
                 builder.setMessage("Change the Group Name of ${subGroupSelected}:")
 
+                //declare the input
                 val input = EditText(this)
                 input.hint = "Name"
                 input.inputType = InputType.TYPE_CLASS_TEXT
                 builder.setView(input)
 
                 builder.setPositiveButton("Yes") { _, _ ->
-                    val NewGroupName = input.text.toString()
+                    val NewGroupName = input.text.toString()  // get the new subgroup name
                     if (inputCheck(NewGroupName)) {
-                        mGroupViewModel.updateSubGroup(subGroupSelected,NewGroupName)
+                        mGroupViewModel.updateSubGroup(subGroupSelected,NewGroupName) // update the subgroup with the new name
                         Toast.makeText(
                             this,
                             "Successfully changed to $NewGroupName",
@@ -281,7 +289,7 @@ class SelectGroupAct : AppCompatActivity() {
                         ).show()
                         val groupSelected: String = group_spinner.selectedItem as String
                         mGroupViewModel.getSubGroupsOfGroup(groupSelected)
-                    } else {
+                    } else { //the subgroup was empty if here
                         Toast.makeText(
                             this,
                             "Add Failed, Please fill out name fields",
@@ -300,18 +308,21 @@ class SelectGroupAct : AppCompatActivity() {
 
 
         editConfBtn.setOnClickListener {
+            //if the group and the subgroup have items in the spinner and items are selected
             if(group_spinner.selectedItem != null && group_spinner.count != 0 &&
                 sub_group_spinner.selectedItem != null && sub_group_spinner.count != 0)
             {
+                //get the group name and the subgroup name
                 val groupName = group_spinner.selectedItem.toString()
                 val subGroupName = sub_group_spinner.selectedItem.toString()
+                //set the intent by passing the group name and the subgroup name
                 val intent = Intent(this, EditFlashCardsAct::class.java)
                 intent.putExtra("group_name", groupName)
                 intent.putExtra("sub_group_name", subGroupName)
                 startActivity(intent)
             }
             else
-            {
+            { // if nothing is selected then there should be an error
                 Toast.makeText(
                     this,
                     "Please Select a Subject and Cardset",
@@ -324,14 +335,14 @@ class SelectGroupAct : AppCompatActivity() {
 
 
         val Backbtn = findViewById<Button>(R.id.Backbutton)
-
+        //this button returns back to the home page
         Backbtn.setOnClickListener {
             finish()
             startActivity(Intent(this, MainActivity::class.java))
         }
     }
 
-    private fun inputCheck(groupName: String): Boolean {
+    private fun inputCheck(groupName: String): Boolean { //this checks the input
         return !(TextUtils.isEmpty(groupName))
     }
 }

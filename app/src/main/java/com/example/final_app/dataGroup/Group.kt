@@ -4,15 +4,18 @@ import androidx.room.*
 
 
 
-//indices = arrayOf(Index(value = ["groupName"], unique = true))
+//this file includes the table definitions for the room database
 
+//group table
 @Entity(tableName = "group_table")
 data class Group(
     @PrimaryKey
     @ColumnInfo(name = "groupName")
-    val groupName: String,
+    val groupName: String, //the only key is the group name as a string
     )
 
+
+//subgroup table
 @Entity(
     tableName = "sub_group_table",
     foreignKeys = [
@@ -24,7 +27,7 @@ data class Group(
             onUpdate = ForeignKey.CASCADE
         )]
 )
-data class SubGroup(
+data class SubGroup( // contains the subgroup name as the primary key and sgParentGroupName is the foreign key to the group table
     @PrimaryKey
     @ColumnInfo(name = "subGroupName")
     val subGroupName: String,
@@ -44,7 +47,7 @@ data class SubGroup(
             onUpdate = ForeignKey.CASCADE
         )]
 )
-data class FlashCard(
+data class FlashCard( // this table contains the front as the primary key, the back and the FCParentSubGroup as a foreign key to the subgroup table
     @PrimaryKey
     @ColumnInfo(name = "FC_Front")
     var front: String,

@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 class GroupRepository(private val groupDao: GroupDao) {
-    //data read access
+    //these functions call the data read functions in the dao
 
     val readAllGroups: LiveData<List<Group>> = groupDao.readAllGroups()
 
