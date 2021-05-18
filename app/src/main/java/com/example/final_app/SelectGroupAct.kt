@@ -138,6 +138,10 @@ class SelectGroupAct : AppCompatActivity() {
                         val newItemSelected: String = group_spinner.selectedItem as String
                         mGroupViewModel.getSubGroupsOfGroup(newItemSelected)
                     }
+                    else
+                    {
+                        sub_group_adapter.clear()
+                    }
                 }
                 builder.setNegativeButton(
                     "Cancel"
