@@ -313,6 +313,14 @@ class SelectGroupAct : AppCompatActivity() {
 
 
         }
+
+
+        val Backbtn = findViewById<Button>(R.id.Backbutton)
+
+        Backbtn.setOnClickListener {
+            finish()
+            startActivity(Intent(this, MainActivity::class.java))
+        }
     }
 
     private fun inputCheck(groupName: String): Boolean {

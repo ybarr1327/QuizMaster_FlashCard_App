@@ -8,7 +8,7 @@
     tools:context=".study">
 
     <EditText
-        android:id="@+id/currentCardNumber"
+        android:id="@+id/currentScoreNum"
         android:layout_width="54dp"
         android:layout_height="38dp"
         android:ems="10"
@@ -18,41 +18,10 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/Card"
-        android:layout_width="76dp"
-        android:layout_height="38dp"
-        android:gravity="center"
-        android:text="CARD#"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.173"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048"
-        tools:ignore="MissingConstraints"
-        tools:text="CARD #" />
-
-    <TextView
-        android:id="@+id/Of"
-        android:layout_width="47dp"
-        android:layout_height="38dp"
-        android:gravity="center"
-        android:text="OF"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.048"
+        app:layout_constraintVertical_bias="0.813"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -64,24 +33,11 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.574"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.951"
+        app:layout_constraintVertical_bias="0.813"
         tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/Score"
-        android:layout_width="61dp"
-        android:layout_height="34dp"
-        android:gravity="center"
-        android:text="SCORE:"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.191"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.947" />
 
     <EditText
         android:id="@+id/totalScoreNum"
@@ -94,14 +50,59 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.677"
+        app:layout_constraintHorizontal_bias="0.757"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.953"
+        app:layout_constraintVertical_bias="0.816"
         tools:ignore="MissingConstraints" />
 
+    <TextView
+        android:id="@+id/Score"
+        android:layout_width="61dp"
+        android:layout_height="34dp"
+        android:gravity="center"
+        android:text="SCORE:"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.268"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.812" />
+
+    <TextView
+        android:id="@+id/Of"
+        android:layout_width="47dp"
+        android:layout_height="38dp"
+        android:gravity="center"
+        android:text="OF"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/Card"
+        android:layout_width="76dp"
+        android:layout_height="38dp"
+        android:gravity="center"
+        android:text="CARD#"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.229"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.049"
+        tools:ignore="MissingConstraints"
+        tools:text="CARD #" />
+
     <EditText
-        android:id="@+id/currentScoreNum"
+        android:id="@+id/currentCardNumber"
         android:layout_width="54dp"
         android:layout_height="38dp"
         android:ems="10"
@@ -111,10 +112,10 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.358"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95"
+        app:layout_constraintVertical_bias="0.046"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -128,7 +129,7 @@
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.695"
+        app:layout_constraintHorizontal_bias="0.751"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.046"
@@ -140,10 +141,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.835"
+        app:layout_constraintVertical_bias="0.694"
         app:srcCompat="@drawable/check" />
 
     <ImageButton
@@ -152,42 +153,42 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.838"
+        app:layout_constraintHorizontal_bias="0.89"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.833"
+        app:layout_constraintVertical_bias="0.694"
         app:srcCompat="@drawable/x" />
-
-    <TextView
-        android:id="@+id/flashcardFront"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:text="Front Card"
-        android:gravity="center"
-        android:background="@color/white"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.41" />
 
     <TextView
         android:id="@+id/flashcardBack"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:text="Back Card"
-        android:gravity="center"
-        android:background="@color/white"
-        android:textSize="30dp"
         android:alpha="0"
+        android:background="#A1A1A1"
+        android:gravity="center"
+        android:text="Back Card"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.41" />
+        app:layout_constraintVertical_bias="0.273" />
+
+    <TextView
+        android:id="@+id/flashcardFront"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:background="#A1A1A1"
+        android:gravity="center"
+        android:text="Front Card"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.273" />
 
     <Button
         android:id="@+id/flipbutton"
@@ -198,17 +199,30 @@
         app:layout_constraintEnd_toStartOf="@+id/IncorrectButton"
         app:layout_constraintStart_toEndOf="@+id/CorrectButton"
         app:layout_constraintTop_toBottomOf="@+id/flashcardFront"
-        app:layout_constraintVertical_bias="0.373" />
+        app:layout_constraintVertical_bias="0.142" />
 
     <Button
         android:id="@+id/Restart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
         android:text="Restart"
-        app:layout_constraintBottom_toTopOf="@+id/scoreOf"
         app:layout_constraintEnd_toStartOf="@+id/IncorrectButton"
         app:layout_constraintStart_toEndOf="@+id/CorrectButton"
-        app:layout_constraintTop_toBottomOf="@+id/flashcardFront"
-        app:layout_constraintVertical_bias="0.761" />
+        app:layout_constraintTop_toBottomOf="@+id/flashcardFront" />
+
+    <Button
+        android:id="@+id/Backbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="#ff008577"
+
+        android:text="HOME"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

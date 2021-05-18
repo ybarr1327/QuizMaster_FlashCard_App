@@ -1,6 +1,7 @@
 package com.example.final_app
 
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.final_app.dataGroup.FlashCard
 
 import com.example.final_app.dataGroup.GroupViewModel
+import kotlinx.android.synthetic.main.activity_edit_flash_cards.*
 
 class EditFlashCardsAct : AppCompatActivity() {
 
@@ -27,6 +29,7 @@ class EditFlashCardsAct : AppCompatActivity() {
         if (intent != null){
             groupName = intent.getString("group_name").toString()
             subGroupName = intent.getString("sub_group_name").toString()
+            FlashCardsSubGroupET.setText(subGroupName)
         }
 
         val Add_FC_Btn = findViewById<Button>(R.id.Add_Flashcard)
@@ -173,6 +176,12 @@ class EditFlashCardsAct : AppCompatActivity() {
 
             builder.create().show()
 
+        }
+        val Backbtn = findViewById<Button>(R.id.Backbutton)
+
+        Backbtn.setOnClickListener {
+            finish()
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 

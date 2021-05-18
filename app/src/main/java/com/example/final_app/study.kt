@@ -2,6 +2,7 @@ package com.example.final_app
 
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
@@ -184,6 +185,13 @@ class study : AppCompatActivity() {
             val intent = getIntent()
             finish()
             startActivity(intent)
+        }
+
+        val Backbtn = findViewById<Button>(R.id.Backbutton)
+
+        Backbtn.setOnClickListener {
+            finish()
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
     }

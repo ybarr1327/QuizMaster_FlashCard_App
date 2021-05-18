@@ -30,7 +30,8 @@ class study_flashcards : AppCompatActivity() {
         val Backbtn = findViewById<Button>(R.id.Backbutton)
 
         Backbtn.setOnClickListener {
-            startActivity(Intent(this,MainActivity::class.java))
+            finish()
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         studyBtn.setOnClickListener {
