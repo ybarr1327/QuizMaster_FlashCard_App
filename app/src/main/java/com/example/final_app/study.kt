@@ -134,7 +134,7 @@ class study : AppCompatActivity() {
                     currentScoreNum.setText((currentScore).toString())
                     Toast.makeText(
                         this,
-                        "You finished this set, press the restart button",
+                        "You finished this set, press the restart button to study again",
                         Toast.LENGTH_LONG
                     ).show()
                 }

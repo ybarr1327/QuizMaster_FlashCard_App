@@ -310,6 +310,14 @@ class SelectGroupAct : AppCompatActivity() {
                 intent.putExtra("sub_group_name", subGroupName)
                 startActivity(intent)
             }
+            else
+            {
+                Toast.makeText(
+                    this,
+                    "Please Select a Subject and Cardset",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
 
 
         }

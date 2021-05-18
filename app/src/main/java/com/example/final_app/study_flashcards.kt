@@ -5,13 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
+import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import com.example.final_app.dataGroup.GroupViewModel
 import androidx.lifecycle.Observer
+
 
 class study_flashcards : AppCompatActivity() {
     private lateinit var mGroupViewModel: GroupViewModel
@@ -28,6 +26,9 @@ class study_flashcards : AppCompatActivity() {
         var sub_group_adapter = ArrayAdapter<Any>(this, android.R.layout.simple_spinner_item)
         val studyBtn = findViewById<Button>(R.id.Study_button)
         val Backbtn = findViewById<Button>(R.id.Backbutton)
+        var set_size = 0;
+        var groupName:String
+        var subGroupName:String
 
         Backbtn.setOnClickListener {
             finish()
@@ -38,15 +39,47 @@ class study_flashcards : AppCompatActivity() {
             if(group_spinner.selectedItem != null && group_spinner.count != 0 &&
                 sub_group_spinner.selectedItem != null && sub_group_spinner.count != 0)
             {
-                val groupName = group_spinner.selectedItem.toString()
-                val subGroupName = sub_group_spinner.selectedItem.toString()
-                val intent = Intent(this, study::class.java)
-                intent.putExtra("group_name", groupName)
-                intent.putExtra("sub_group_name", subGroupName)
-                startActivity(intent)
+                groupName = group_spinner.selectedItem.toString()
+                subGroupName = sub_group_spinner.selectedItem.toString()
+
+                if (set_size >0)
+                {
+                    set_size = 0
+                    val intent = Intent(this, study::class.java)
+                    intent.putExtra("group_name", groupName)
+                    intent.putExtra("sub_group_name", subGroupName)
+                    startActivity(intent)
+                }
+                else
+                {
+                    set_size = 0
+                    Toast.makeText(
+                        this,
+                        "There are no flashcards in this set, please create a flashcard first",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+            }
+
+            else
+            {
+                Toast.makeText(
+                    this,
+                    "Please Select a Subject and Cardset",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
         }
+
+
+
+        mGroupViewModel.returnedFlashCards.observe(this, { Flashcard ->
+            if (Flashcard.isNotEmpty()) {
+                set_size = Flashcard.size
+            }
+        })
 
         mGroupViewModel.readAllGroups.observe(this, Observer { group ->
             group_adapter.clear()
@@ -74,6 +107,24 @@ class study_flashcards : AppCompatActivity() {
                 // write code to perform some action
             }
         }
+        sub_group_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if(group_spinner.selectedItem != null && group_spinner.count != 0 &&
+                    sub_group_spinner.selectedItem != null && sub_group_spinner.count != 0)
+                    {
+                    groupName = group_spinner.selectedItem.toString()
+                    subGroupName = sub_group_spinner.selectedItem.toString()
+                    mGroupViewModel.getFlashcards(subGroupName)
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+
+        }
+
 
 
     }
