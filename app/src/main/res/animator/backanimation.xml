@@ -20,6 +20,6 @@
         android:startOffset="500"
         android:duration="0"
         />
-    #animator object for back animation
+    //animator object for back animation
 </set>
 

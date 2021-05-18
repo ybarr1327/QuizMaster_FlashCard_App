@@ -13,5 +13,5 @@
         android:startOffset="500"
         android:duration="1"
         />
-    #animator object for front animation
+    //animator object for front animation
 </set>
