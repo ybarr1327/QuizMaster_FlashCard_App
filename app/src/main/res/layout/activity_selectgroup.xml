@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:text="Select a Group"
+        android:text="Select a Subject"
         app:layout_constraintBottom_toTopOf="@+id/GroupSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:text="Select a sub group"
+        android:text="Select a Card Set"
         app:layout_constraintBottom_toTopOf="@+id/SubGroupSpinner"
         app:layout_constraintEnd_toEndOf="parent"
 
