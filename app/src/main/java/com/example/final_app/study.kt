@@ -113,11 +113,14 @@ class study : AppCompatActivity() {
 
 
 
-
+        // button used for the check mark to indicate a correct answer
         val correctButton = findViewById<ImageButton>(R.id.CorrectButton)
+        // button used for the x to indicate an incorrect answer
         val incorrectButton = findViewById<ImageButton>(R.id.IncorrectButton)
+        // Button used to restart the activity
         val restartButton = findViewById<Button>(R.id.Restart)
-
+        // if the correct button is clicked it checks if there are cards in the set then adds
+        // to the score on the bottom of the screen and displays a toast message if there are no more cards.
         correctButton.setOnClickListener {
             if (Front.isNotEmpty()) {
 
@@ -151,7 +154,8 @@ class study : AppCompatActivity() {
                 }
             }
         }
-
+        //if the incorrect button is clicked it checks if there are cards in the set then adds
+        // to the card number on the top of the screen and displays a toast message if there are no more cards.
         incorrectButton.setOnClickListener{
             if (Front.isNotEmpty()) {
 

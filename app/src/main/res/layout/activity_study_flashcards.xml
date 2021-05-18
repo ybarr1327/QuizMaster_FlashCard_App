@@ -7,6 +7,7 @@
     android:background="#FFFFFF"
     tools:context=".study_flashcards">
 
+
     <Spinner
         android:id="@+id/group"
         android:layout_width="210dp"

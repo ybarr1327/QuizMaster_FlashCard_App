@@ -21,23 +21,27 @@ class study_flashcards : AppCompatActivity() {
         mGroupViewModel = ViewModelProvider(this).get(GroupViewModel::class.java) // this gets the viewmodel of the database
 
         val group_spinner = findViewById<Spinner>(R.id.group)
+        // array adapter for the group attribute
         var group_adapter = ArrayAdapter<Any>(this, android.R.layout.simple_spinner_item)
+        // spinner used for the sub group attribute
         val sub_group_spinner = findViewById<Spinner>(R.id.subgroup)
+        // array adapter for the sub group attribute
         var sub_group_adapter = ArrayAdapter<Any>(this, android.R.layout.simple_spinner_item)
+        // studyBtn is used as the button to launch the study activity
         val studyBtn = findViewById<Button>(R.id.Study_button)
+        // Backbth is used as the button to return to the main activity
         val Backbtn = findViewById<Button>(R.id.Backbutton)
         var set_size = 0;
         var groupName:String
         var subGroupName:String
 
+        // ables the back button to return to the mainactivity when clicked
         Backbtn.setOnClickListener {
             finish() // this button closes the activity and goes to the home page
             startActivity(Intent(this, MainActivity::class.java))
         }
-
-        studyBtn.setOnClickListener { // this will open a flashcard set to study in the next activity
-
-            //if the spinners have data and items are selected
+        // ables the study button to launch the study activity. It does check for the condition that
+        studyBtn.setOnClickListener {
             if(group_spinner.selectedItem != null && group_spinner.count != 0 &&
                 sub_group_spinner.selectedItem != null && sub_group_spinner.count != 0)
             {
