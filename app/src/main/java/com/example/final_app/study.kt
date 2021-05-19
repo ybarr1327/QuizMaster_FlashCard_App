@@ -87,36 +87,23 @@ class study : AppCompatActivity() {
         mGroupViewModel.getFlashcards(subGroupName) // this gets the flashcards of the subgroup passed from the intent
 
         mGroupViewModel.returnedFlashCards.observe(this, { Flashcard ->
-<<<<<<< Updated upstream
+
             if (Flashcard.isNotEmpty()) { // if there are items in the flashcard set
                 shuffle(Flashcard) // randomize the cards
-=======
-            if (Flashcard.isNotEmpty()) {
-                shuffle(Flashcard)
-                // shuffle call to shuffle the order of the flashcards
 
->>>>>>> Stashed changes
 
                 //set the front and the back of the flashcards
                 flashcardFront.text = Flashcard[0].front
                 flashcardBack.text = Flashcard[0].back
                 //setting the text to the flashcard front/back
 
-<<<<<<< Updated upstream
+
                 totalNumOfCards = Flashcard.size //set the size of the flashcards
                 totalCardNum.setText(totalNumOfCards.toString()) //store the size in the textview
 
                 currentFlashcard = 0 // this is the index for the flashcard in the list
                 currentCardNumber.setText((currentFlashcard + 1).toString()) // this is the number of the flashcard in the set
-=======
-                totalNumOfCards = Flashcard.size
-                totalCardNum.setText(totalNumOfCards.toString())
-                //int used to display the number of flashcards in the set
 
-                currentFlashcard = 0
-                currentCardNumber.setText((currentFlashcard + 1).toString())
-                // current number of flashcards reviewed
->>>>>>> Stashed changes
 
                 currentScoreNum.setText(currentScore.toString()) // set the initial score
                 totalScoreNum.setText(totalNumOfCards.toString()) // set the total possible score
